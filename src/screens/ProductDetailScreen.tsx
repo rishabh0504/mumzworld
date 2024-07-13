@@ -1,8 +1,8 @@
 import { Text, View } from "react-native";
-export const HomeScreen = () => {
+export const ProductDetailScreen = () => {
   return (
     <View>
-      <Text>Home Screen</Text>
+      <Text>ProductDetailScreen</Text>
     </View>
   );
 };

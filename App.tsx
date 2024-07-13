@@ -1,10 +1,18 @@
 import useMascotAnimation from "@hooks/useMascotAnimation";
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { Animated, Dimensions, Image, StyleSheet, View } from "react-native";
-import "react-native-gesture-handler";
+import {
+  Animated,
+  Dimensions,
+  Image,
+  StyleSheet,
+  View,
+  Text,
+} from "react-native";
 import Logo from "./src/assets/logo.png";
 import MascotImage from "./src/assets/mascot.png"; // Assuming your mascot image path is correct
+import { HomeScreen } from "@screens/Home";
+import { NavigationContainer } from "@react-navigation/native";
+import { DrawerNavigator } from "@components/drawer/DrawerNavigator";
 const { width } = Dimensions.get("window");
 const { height } = Dimensions.get("window");
 
@@ -18,7 +26,7 @@ export default function App() {
   const translateYAnim = useMascotAnimation(onAnimationComplete);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.containerWrapper}>
       {!animationCompleted && (
         <View style={styles.container}>
           <Animated.Image
@@ -31,8 +39,12 @@ export default function App() {
             ]}
           />
           <Image source={Logo} style={[styles.image, { width: width * 0.8 }]} />
-          <StatusBar style="auto" />
         </View>
+      )}
+      {animationCompleted && (
+        <NavigationContainer>
+          <DrawerNavigator />
+        </NavigationContainer>
       )}
     </View>
   );
@@ -44,6 +56,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
+  },
+  containerWrapper: {
+    flex: 1,
   },
   mascotImage: {
     width: 200, // Adjust the width as needed
