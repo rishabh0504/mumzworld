@@ -19,7 +19,7 @@ const HomeScreenStack = () => {
         component={HomeScreen}
         options={{
           headerTitle: () => <CustomHeaderTitle />,
-          headerLeft: () => null, // Optionally hide the default drawer icon
+          headerLeft: () => null,
         }}
       />
     </Stack.Navigator>
