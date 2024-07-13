@@ -1,4 +1,3 @@
-// api/axiosInstance.ts
 
 import axios from 'axios';
 

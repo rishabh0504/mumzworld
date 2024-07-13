@@ -1,7 +1,7 @@
 // DrawerContent.tsx
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { DrawerContentComponentProps } from "@react-navigation/drawer";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export const DrawerContent: React.FC<DrawerContentComponentProps> = ({
   navigation,

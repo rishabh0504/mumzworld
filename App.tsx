@@ -1,20 +1,11 @@
+import { DrawerNavigator } from "@components/drawer/DrawerNavigator";
 import useMascotAnimation from "@hooks/useMascotAnimation";
+import { NavigationContainer } from "@react-navigation/native";
 import React, { useState } from "react";
-import {
-  Animated,
-  Dimensions,
-  Image,
-  StyleSheet,
-  View,
-  Text,
-} from "react-native";
+import { Animated, Dimensions, Image, StyleSheet, View } from "react-native";
 import Logo from "./src/assets/logo.png";
 import MascotImage from "./src/assets/mascot.png"; // Assuming your mascot image path is correct
-import { HomeScreen } from "@screens/Home";
-import { NavigationContainer } from "@react-navigation/native";
-import { DrawerNavigator } from "@components/drawer/DrawerNavigator";
 const { width } = Dimensions.get("window");
-const { height } = Dimensions.get("window");
 
 export default function App() {
   const [animationCompleted, setAnimationCompleted] = useState<boolean>(false);
