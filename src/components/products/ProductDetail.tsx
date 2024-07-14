@@ -1,10 +1,12 @@
 import { RootStackParamList } from "@components/drawer/DrawerNavigator";
-import { RouteProp, useNavigation } from "@react-navigation/native";
-import { StyleSheet, Text, View, Image } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "src/store";
-import ProductImageSlider from "./ImageSlider";
+import Chip from "@components/util-components/Chip";
+import StrikethroughText from "@components/util-components/StrikethroughText";
 import Strong from "@components/util-components/Strong";
+import { RouteProp } from "@react-navigation/native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { useSelector } from "react-redux";
+import { RootState } from "src/store";
+import ProductImageSlider from "./ImageSlider";
 type ProductDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   "ProductDetail"
@@ -52,6 +54,87 @@ export const ProductDetail = ({ route }: Props) => {
           </Strong>
         </View>
       </View>
+      <View
+        style={{
+          flex: 1,
+          width: "100%",
+          flexDirection: "row",
+          justifyContent: "flex-start",
+          maxHeight: 35,
+          marginTop: 10,
+        }}
+      >
+        <View
+          style={{
+            flex: 2,
+            flexDirection: "row",
+            justifyContent: "flex-start",
+          }}
+        >
+          <Strong style={styles.price} numberOfLines={1}>
+            {price_range?.minimum_price?.final_price?.currency}{" "}
+            {price_range?.minimum_price?.final_price?.value?.toFixed(2)}
+          </Strong>
+          <Chip
+            label={
+              price_range?.minimum_price?.discount &&
+              price_range?.minimum_price?.discount.percent_off !== 0
+                ? `-${price_range?.minimum_price?.discount?.percent_off}%`
+                : undefined
+            }
+            bgColor={"red"}
+            textColor={"#ffffff"}
+          />
+        </View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <Image
+            source={require("../../assets/navigation/love.png")}
+            style={{
+              maxWidth: 30,
+              maxHeight: 30,
+              justifyContent: "flex-end",
+              alignSelf: "flex-end",
+            }}
+          />
+          <Image
+            source={require("../../assets/bag.png")}
+            style={{
+              maxWidth: 30,
+              maxHeight: 30,
+              justifyContent: "flex-end",
+              alignSelf: "flex-end",
+            }}
+          />
+        </View>
+      </View>
+      <View
+        style={{
+          flex: 1,
+          paddingLeft: 10,
+          paddingRight: 10,
+          flexDirection: "row",
+        }}
+      >
+        <StrikethroughText style={{ paddingTop: 4, fontSize: 16 }}>
+          {price_range?.minimum_price?.regular_price?.value?.toFixed(2)}
+        </StrikethroughText>
+        <Text
+          style={{
+            paddingTop: 4,
+            paddingLeft: 10,
+            paddingRight: 10,
+            fontSize: 16,
+          }}
+        >
+          Including Tax
+        </Text>
+      </View>
     </View>
   );
 };
@@ -70,6 +153,13 @@ const styles = StyleSheet.create({
   exploreBrand: {
     color: "blue",
     fontSize: 16,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  price: {
+    fontSize: 18,
+    color: "#000000",
+    paddingTop: 5,
     paddingLeft: 10,
     paddingRight: 10,
   },

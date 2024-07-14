@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: 55,
+    fontSize: 10,
   },
   chipSelected: {
     borderWidth: 1,
