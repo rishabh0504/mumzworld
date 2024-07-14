@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Item } from '@types/product';
+import { Item } from '@utils/types/product';
 
 interface ProductsState {
     items: Item[],
@@ -46,5 +46,7 @@ export const productSlice = createSlice({
         }
     },
 })
-export const { fetchProductsRequest, fetchProductsSuccess, fetchProductsFailure, currentProductViewing, resetCurrentProductViewing } = productSlice.actions;
+export const { fetchProductsRequest, fetchProductsSuccess,
+    fetchProductsFailure, currentProductViewing,
+    resetCurrentProductViewing } = productSlice.actions;
 export default productSlice.reducer;

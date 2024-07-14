@@ -1,4 +1,5 @@
 // DrawerNavigator.tsx
+import CustomHeaderWithBack from "@components/header/BackNavigation";
 import CustomHeaderTitle from "@components/header/CustomHeaderTitle";
 import ProductDetail from "@components/products/ProductDetail";
 import {
@@ -9,7 +10,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "@screens/Home";
 import React from "react";
 import CustomDrawer from "./CustomDrawer";
-import CustomHeaderWithBack from "@components/header/BackNavigation";
 export type RootStackParamList = {
   Home: undefined;
   ProductDetail: { id: number };

@@ -3,11 +3,11 @@ import Chip from "@components/util-components/Chip";
 import StrikethroughText from "@components/util-components/StrikethroughText";
 import Strong from "@components/util-components/Strong";
 import { RouteProp } from "@react-navigation/native";
+import { THEME_COLORS } from "@utils/constant/constant";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import { RootState } from "src/store";
 import ProductImageSlider from "./ImageSlider";
-import { THEME_COLORS } from "@utils/constant";
 type ProductDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   "ProductDetail"

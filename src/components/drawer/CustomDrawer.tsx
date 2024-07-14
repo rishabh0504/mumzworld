@@ -2,7 +2,7 @@ import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
-import { THEME_COLORS } from "@utils/constant";
+import { THEME_COLORS } from "@utils/constant/constant";
 import React from "react";
 import {
   FlatList,

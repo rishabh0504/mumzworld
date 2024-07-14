@@ -33,9 +33,9 @@ const useMascotAnimation = (onAnimationComplete) => {
                         useNativeDriver: true,
                     }),
                 ]),
-                { iterations: 1 } // Number of times to repeat animation (adjust as needed)
+                { iterations: 1 }
             ).start(() => {
-                onAnimationComplete(); // Notify parent component
+                onAnimationComplete();
             });
         };
 

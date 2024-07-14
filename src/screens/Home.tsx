@@ -1,5 +1,5 @@
 import ProductList from "@components/products/ProductList";
-import { THEME_COLORS } from "@utils/constant";
+import { THEME_COLORS } from "@utils/constant/constant";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 

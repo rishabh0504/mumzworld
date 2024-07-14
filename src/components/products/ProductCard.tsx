@@ -4,8 +4,8 @@ import StrikethroughText from "@components/util-components/StrikethroughText";
 import Strong from "@components/util-components/Strong";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { Item } from "@types/product";
-import { CHIPSYALLA, COUNTRIES, THEME_COLORS } from "@utils/constant";
+import { CHIPSYALLA, COUNTRIES, THEME_COLORS } from "@utils/constant/constant";
+import { Item } from "@utils/types/product";
 import {
   Dimensions,
   Image,
