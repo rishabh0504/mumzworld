@@ -14,6 +14,9 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { currentProductViewing } from "src/slice/product.slice";
+import { AppDispatch } from "src/store";
 const { width } = Dimensions.get("screen");
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
 
@@ -22,6 +25,7 @@ interface ProductCardProps {
 }
 const ProductCard = (productItem: ProductCardProps) => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
+  const dispatch: AppDispatch = useDispatch();
 
   const { product } = productItem || {};
   const { small_image, name, price_range, is_yalla, id } = product || {};
@@ -29,11 +33,15 @@ const ProductCard = (productItem: ProductCardProps) => {
   const { discount, final_price, regular_price } = minimum_price || {};
 
   const handleNavigate = (item: Item) => () => {
+    dispatch(currentProductViewing(item));
     navigation.navigate("ProductDetail", { id: item.id });
   };
 
   return (
-    <TouchableHighlight onPress={handleNavigate(product)}>
+    <TouchableHighlight
+      onPress={handleNavigate(product)}
+      underlayColor={"#efefef"}
+    >
       <View style={styles.card}>
         <View style={[styles.offer_favourite_wrapper]}>
           <View style={{ justifyContent: "flex-start" }}>
@@ -99,12 +107,12 @@ const ProductCard = (productItem: ProductCardProps) => {
           }}
         >
           <View style={{ flex: 1 }}>
-            <Strong style={styles.price}>
+            <Strong style={styles.price} numberOfLines={1}>
               {final_price?.currency} {final_price?.value?.toFixed(2)}
             </Strong>
           </View>
           <View style={{ flex: 1 }}>
-            <StrikethroughText>
+            <StrikethroughText style={{ paddingTop: 4, fontSize: 12 }}>
               {regular_price?.value?.toFixed(2)}
             </StrikethroughText>
           </View>

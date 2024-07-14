@@ -1,14 +1,17 @@
 import React from "react";
 import { Text, StyleSheet } from "react-native";
 
-const Strong = ({ children, ...props }) => {
-  return <Text style={[styles.strong, props]}>{children}</Text>;
+const Strong = ({ children, style, numberOfLines }) => {
+  return (
+    <Text style={[styles.strong, style]} numberOfLines={numberOfLines}>
+      {children}
+    </Text>
+  );
 };
 
 const styles = StyleSheet.create({
   strong: {
     fontWeight: "bold",
-    color: "#000000",
   },
 });
 
