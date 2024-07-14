@@ -8,27 +8,34 @@ interface ChipProps {
 const Chip = (chipItem: ChipProps) => {
   const { label, bgColor, textColor } = chipItem || {};
   return (
-    <TouchableOpacity
-      style={[
-        styles.chip,
-        { backgroundColor: bgColor }, // Apply dynamic background color
-      ]}
-    >
-      <Text style={[styles.label, styles.labelSelected, { color: textColor }]}>
-        {label}
-      </Text>
-    </TouchableOpacity>
+    <>
+      {label && (
+        <TouchableOpacity
+          style={[
+            styles.chip,
+            { backgroundColor: bgColor }, // Apply dynamic background color
+          ]}
+        >
+          <Text
+            style={[styles.label, styles.labelSelected, { color: textColor }]}
+          >
+            {label}
+          </Text>
+        </TouchableOpacity>
+      )}
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   chip: {
     borderRadius: 20,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
+    paddingVertical: 5,
+    paddingHorizontal: 5,
     margin: 4,
     alignItems: "center",
     justifyContent: "center",
+    width: 55,
   },
   chipSelected: {
     borderWidth: 1,
