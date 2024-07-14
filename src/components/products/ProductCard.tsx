@@ -10,7 +10,12 @@ const ProductCard = (product) => {
         resizeMode="cover"
       />
       <View style={styles.cardContent}>
-        <Text style={styles.title}>{product?.product?.name}</Text>
+        <Text style={styles.title} numberOfLines={2}>
+          {product?.product?.name.length < 33
+            ? `${product?.product?.name}`
+            : `${product?.product?.name.substring(0, 32)}...`}
+        </Text>
+
         <Text style={styles.price}>
           {product?.product?.price_range?.minimum_price?.final_price?.value?.toFixed(
             2
@@ -36,6 +41,8 @@ const styles = StyleSheet.create({
     height: 200,
     padding: 20,
     maxWidth: "auto",
+    marginTop: 2,
+    marginBottom: 2,
   },
   image: {
     height: 100,
