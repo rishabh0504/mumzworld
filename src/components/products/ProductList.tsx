@@ -3,7 +3,7 @@ import { FlatList, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "src/service/product.service";
 import { AppDispatch, RootState } from "src/store";
-import ProductCard from "./ProductCard"; // Adjust the path as necessary
+import ProductCard from "./ProductCard";
 
 const ProductList = () => {
   const dispatch: AppDispatch = useDispatch();

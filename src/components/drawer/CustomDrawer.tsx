@@ -2,6 +2,7 @@ import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
+import { THEME_COLORS } from "@utils/constant";
 import React from "react";
 import {
   FlatList,
@@ -14,7 +15,7 @@ import {
 } from "react-native";
 
 interface MenuItem {
-  id: string; // Changed from 'key' to 'id'
+  id: string;
   title: string;
   screen: string;
   icon: ImageSourcePropType;
@@ -44,8 +45,7 @@ const menuItems: MenuItem[] = [
     title: "My Account",
     screen: "MyAccount",
     icon: require("../../assets/navigation/account.png"),
-  }, // Corrected screen name
-  // Add more items as needed
+  },
 ];
 
 const CustomDrawer: React.FC<DrawerContentComponentProps> = (props) => {
@@ -75,12 +75,11 @@ const CustomDrawer: React.FC<DrawerContentComponentProps> = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: THEME_COLORS["semantic.bg.white"],
   },
   item: {
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
     flex: 1,
     flexDirection: "row",
   },

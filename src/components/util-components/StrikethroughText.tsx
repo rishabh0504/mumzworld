@@ -1,3 +1,4 @@
+import { THEME_COLORS } from "@utils/constant";
 import React from "react";
 import { Text, StyleSheet } from "react-native";
 
@@ -8,7 +9,7 @@ const StrikethroughText = ({ children, style }) => {
 const styles = StyleSheet.create({
   strikethrough: {
     textDecorationLine: "line-through",
-    color: "#808080",
+    color: THEME_COLORS["semantic.fg.disabled"],
   },
 });
 

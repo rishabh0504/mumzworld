@@ -7,6 +7,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import { RootState } from "src/store";
 import ProductImageSlider from "./ImageSlider";
+import { THEME_COLORS } from "@utils/constant";
 type ProductDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   "ProductDetail"
@@ -31,7 +32,6 @@ export const ProductDetail = ({ route }: Props) => {
     small_image,
     stock_status,
   } = currentProductViewing || {};
-  console.log(JSON.stringify(currentProductViewing));
   return (
     <View style={styles.container}>
       <ProductImageSlider images={[small_image?.url]} />
@@ -82,8 +82,8 @@ export const ProductDetail = ({ route }: Props) => {
                 ? `-${price_range?.minimum_price?.discount?.percent_off}%`
                 : undefined
             }
-            bgColor={"red"}
-            textColor={"#ffffff"}
+            bgColor={THEME_COLORS["semantic.fg.secondary"]}
+            textColor={THEME_COLORS["semantic.bg.white"]}
           />
         </View>
         <View
@@ -142,7 +142,7 @@ export default ProductDetail;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: THEME_COLORS["semantic.bg.white"],
   },
   title: {
     fontSize: 18,
@@ -151,14 +151,14 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   exploreBrand: {
-    color: "blue",
+    color: THEME_COLORS["semantic.fg.link"],
     fontSize: 16,
     paddingLeft: 10,
     paddingRight: 10,
   },
   price: {
     fontSize: 18,
-    color: "#000000",
+    color: THEME_COLORS["semantic.fg.text"],
     paddingTop: 5,
     paddingLeft: 10,
     paddingRight: 10,

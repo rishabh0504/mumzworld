@@ -11,11 +11,7 @@ const Chip = (chipItem: ChipProps) => {
     <>
       {label && (
         <TouchableOpacity style={[styles.chip, { backgroundColor: bgColor }]}>
-          <Text
-            style={[styles.label, styles.labelSelected, { color: textColor }]}
-          >
-            {label}
-          </Text>
+          <Text style={[styles.label, { color: textColor }]}>{label}</Text>
         </TouchableOpacity>
       )}
     </>
@@ -33,17 +29,9 @@ const styles = StyleSheet.create({
     width: 55,
     fontSize: 10,
   },
-  chipSelected: {
-    borderWidth: 1,
-    borderColor: "#333",
-  },
   label: {
     fontSize: 12,
-    color: "#333",
     fontWeight: "bold",
-  },
-  labelSelected: {
-    color: "#fff",
   },
 });
 

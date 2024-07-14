@@ -5,7 +5,7 @@ import Strong from "@components/util-components/Strong";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Item } from "@types/product";
-import { CHIPSYALLA, COUNTRIES } from "@utils/constant";
+import { CHIPSYALLA, COUNTRIES, THEME_COLORS } from "@utils/constant";
 import {
   Dimensions,
   Image,
@@ -40,7 +40,7 @@ const ProductCard = (productItem: ProductCardProps) => {
   return (
     <TouchableHighlight
       onPress={handleNavigate(product)}
-      underlayColor={"#efefef"}
+      underlayColor={THEME_COLORS["semantic.fg.white"]}
     >
       <View style={styles.card}>
         <View style={[styles.offer_favourite_wrapper]}>
@@ -51,8 +51,8 @@ const ProductCard = (productItem: ProductCardProps) => {
                   ? `-${discount?.percent_off}%`
                   : undefined
               }
-              bgColor={"red"}
-              textColor={"#ffffff"}
+              bgColor={THEME_COLORS["semantic.fg.accent"]}
+              textColor={THEME_COLORS["semantic.fg.white"]}
             />
           </View>
           <View style={{ justifyContent: "flex-end" }}>
@@ -121,8 +121,8 @@ const ProductCard = (productItem: ProductCardProps) => {
           {Array.isArray(is_yalla) && is_yalla.includes(COUNTRIES.AE) && (
             <Chip
               label={CHIPSYALLA[COUNTRIES.AE]}
-              bgColor={"#FFC107"}
-              textColor={"#000000"}
+              bgColor={THEME_COLORS["semantic.support.yellow"]}
+              textColor={THEME_COLORS["semantic.fg.text"]}
             />
           )}
         </View>
@@ -135,7 +135,7 @@ export default ProductCard;
 const styles = StyleSheet.create({
   card: {
     borderRadius: 2,
-    shadowColor: "#000",
+    shadowColor: THEME_COLORS["semantic.bg.white"],
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 0,
@@ -146,6 +146,7 @@ const styles = StyleSheet.create({
     maxWidth: "auto",
     marginTop: 2,
     marginBottom: 2,
+    backgroundColor: THEME_COLORS["semantic.bg.white"],
   },
   image: {
     height: 100,
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: 12,
-    color: "#888",
+    color: THEME_COLORS["semantic.fg.text"],
     paddingTop: 5,
   },
   offer_favourite_wrapper: {
