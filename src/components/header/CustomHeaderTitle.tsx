@@ -18,7 +18,7 @@ const CustomHeaderTitle: React.FC = () => {
 
   return (
     <View style={[styles.container, { width: width - 40 }]}>
-      <View style={styles.coloumnLeft}>
+      <View style={styles.columnLeft}>
         <TouchableOpacity
           onPress={openDrawer}
           style={{ justifyContent: "center" }}
@@ -33,7 +33,7 @@ const CustomHeaderTitle: React.FC = () => {
           style={styles.logoImage}
         />
       </View>
-      <View style={styles.coloumnRight}>
+      <View style={styles.columnRight}>
         <Image
           source={require("../../assets/search.png")}
           style={styles.searchImage}
@@ -46,6 +46,7 @@ const CustomHeaderTitle: React.FC = () => {
     </View>
   );
 };
+
 export default CustomHeaderTitle;
 
 const styles = StyleSheet.create({
@@ -57,9 +58,23 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  coloumnLeft: { flex: 2, flexDirection: "row", justifyContent: "flex-start" },
-  coloumnRight: { flex: 2, flexDirection: "row", justifyContent: "flex-end" },
-  menuImage: { height: 25, width: 25, resizeMode: "contain" },
+  columnLeft: {
+    flex: 2,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  columnRight: {
+    flex: 2,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  menuImage: {
+    height: 25,
+    width: 25,
+    resizeMode: "contain",
+  },
   logoImage: {
     resizeMode: "contain",
     marginLeft: 18,

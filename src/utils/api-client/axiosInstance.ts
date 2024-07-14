@@ -1,8 +1,9 @@
 
+import { BASE_URL } from '@utils/constant';
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'https://storage.googleapis.com/', // Replace with your API base URL
+    baseURL: BASE_URL,
     headers: {
         'Content-Type': 'application/json',
     },

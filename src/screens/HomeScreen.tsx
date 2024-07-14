@@ -1,10 +1,11 @@
+import ProductList from "@components/products/ProductList";
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 const HomeScreen: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Home Screen</Text>
+      <ProductList />
     </View>
   );
 };
@@ -12,8 +13,6 @@ const HomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   text: {
     fontSize: 24,

@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import React, { useState } from "react";
 import { Animated, Dimensions, Image, StyleSheet, View } from "react-native";
 import Logo from "./src/assets/logo.png";
-import MascotImage from "./src/assets/mascot.png"; // Assuming your mascot image path is correct
+import MascotImage from "./src/assets/mascot.png";
 const { width } = Dimensions.get("window");
 
 export default function App() {
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mascotImage: {
-    width: 200, // Adjust the width as needed
-    height: 200, // Adjust the height as needed
+    width: 200,
+    height: 200,
     resizeMode: "contain",
   },
   image: {
