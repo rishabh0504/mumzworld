@@ -3,6 +3,8 @@ import useMascotAnimation from "@hooks/useMascotAnimation";
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useState } from "react";
 import { Animated, Dimensions, Image, StyleSheet, View } from "react-native";
+import { Provider } from "react-redux";
+import store from "src/store";
 import Logo from "./src/assets/logo.png";
 import MascotImage from "./src/assets/mascot.png";
 const { width } = Dimensions.get("window");
@@ -33,9 +35,11 @@ export default function App() {
         </View>
       )}
       {animationCompleted && (
-        <NavigationContainer>
-          <DrawerNavigator />
-        </NavigationContainer>
+        <Provider store={store}>
+          <NavigationContainer>
+            <DrawerNavigator />
+          </NavigationContainer>
+        </Provider>
       )}
     </View>
   );

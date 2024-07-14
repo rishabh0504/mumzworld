@@ -1,5 +1,6 @@
 // DrawerNavigator.tsx
 import CustomHeaderTitle from "@components/header/CustomHeaderTitle";
+import ProductDetail from "@components/products/ProductDetail";
 import {
   createDrawerNavigator,
   DrawerContentComponentProps,
@@ -25,6 +26,20 @@ const HomeScreenStack = () => {
     </Stack.Navigator>
   );
 };
+const ProductDetailScreenStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ProductDetail"
+        component={ProductDetail}
+        options={{
+          headerTitle: () => <CustomHeaderTitle />,
+          headerLeft: () => null,
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
 const CustomDrawerContent: React.FC<DrawerContentComponentProps> = (props) => {
   // Custom Drawer content component
   return <CustomDrawer {...props} />;
@@ -38,6 +53,10 @@ export const DrawerNavigator: React.FC = () => {
       }}
     >
       <Drawer.Screen name="Home" component={HomeScreenStack} />
+      <Drawer.Screen
+        name="ProductDetail"
+        component={ProductDetailScreenStack}
+      />
     </Drawer.Navigator>
   );
 };
