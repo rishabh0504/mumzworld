@@ -1,8 +1,8 @@
 import React from "react";
 import { Text, StyleSheet } from "react-native";
 
-const Strong = ({ children }) => {
-  return <Text style={styles.strong}>{children}</Text>;
+const Strong = ({ children, ...props }) => {
+  return <Text style={[styles.strong, props]}>{children}</Text>;
 };
 
 const styles = StyleSheet.create({

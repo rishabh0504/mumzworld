@@ -3,7 +3,7 @@ import StrikethroughText from "@components/util-components/StrikethroughText";
 import Strong from "@components/util-components/Strong";
 import { Item } from "@types/product";
 import { CHIPSYALLA, COUNTRIES } from "@utils/constant";
-import { View, Image, Text, StyleSheet, Dimensions } from "react-native";
+import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 const { width } = Dimensions.get("screen");
 
 interface ProductCardProps {
@@ -16,7 +16,7 @@ const ProductCard = (productItem: ProductCardProps) => {
   const { discount, final_price, regular_price } = minimum_price || {};
   return (
     <View style={styles.card}>
-      <View style={styles.offer_favourite_wrapper}>
+      <View style={[styles.offer_favourite_wrapper]}>
         <View style={{ justifyContent: "flex-start" }}>
           <Chip
             label={
@@ -32,43 +32,73 @@ const ProductCard = (productItem: ProductCardProps) => {
           <Image
             source={require("../../assets/navigation/love.png")}
             style={{
-              width: 25,
-              height: 25,
+              maxWidth: 25,
+              maxHeight: 25,
               justifyContent: "flex-end",
               alignSelf: "flex-end",
-              padding: 10,
             }}
           />
         </View>
       </View>
-
       <Image
         source={{ uri: small_image.url }}
         style={styles.image}
         resizeMode="cover"
       />
-      <View style={styles.cardContent}>
-        <Text style={styles.title} numberOfLines={2}>
-          {name.length < 33 ? `${name}` : `${name.substring(0, 32)}...`}
-        </Text>
-
-        <Text style={styles.price}>
-          <Strong>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          width: "100%",
+          marginTop: 20,
+          maxHeight: 30,
+        }}
+      >
+        <View style={{ flex: 3 }}>
+          <Text style={styles.title} numberOfLines={2}>
+            {name.length < 24 ? `${name}` : `${name.substring(0, 24)}...`}
+          </Text>
+        </View>
+        <View style={{ flex: 1 }}>
+          <Image
+            source={require("../../assets/navigation/cart.png")}
+            style={{
+              width: 25,
+              height: 25,
+              justifyContent: "flex-end",
+              alignSelf: "flex-end",
+            }}
+          />
+        </View>
+      </View>
+      <View
+        style={{
+          flex: 1,
+          width: "100%",
+          maxHeight: 30,
+          flexDirection: "row",
+        }}
+      >
+        <View style={{ flex: 1 }}>
+          <Strong style={styles.price}>
             {final_price?.currency} {final_price?.value?.toFixed(2)}
           </Strong>
-          {"  "}
-          <StrikethroughText
-            children={regular_price?.value?.toFixed(2)}
-          ></StrikethroughText>
-        </Text>
+        </View>
+        <View style={{ flex: 1 }}>
+          <StrikethroughText style={{ color: "#808080" }}>
+            {regular_price?.value?.toFixed(2)}
+          </StrikethroughText>
+        </View>
       </View>
-      {Array.isArray(is_yalla) && is_yalla.includes(COUNTRIES.AE) && (
-        <Chip
-          label={CHIPSYALLA[COUNTRIES.AE]}
-          bgColor={"#FFC107"}
-          textColor={"#000000"}
-        />
-      )}
+      <View>
+        {Array.isArray(is_yalla) && is_yalla.includes(COUNTRIES.AE) && (
+          <Chip
+            label={CHIPSYALLA[COUNTRIES.AE]}
+            bgColor={"#FFC107"}
+            textColor={"#000000"}
+          />
+        )}
+      </View>
     </View>
   );
 };
@@ -100,7 +130,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   title: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: "bold",
   },
   price: {
@@ -114,5 +144,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
+    maxHeight: 40,
   },
 });

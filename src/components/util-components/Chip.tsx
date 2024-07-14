@@ -10,12 +10,7 @@ const Chip = (chipItem: ChipProps) => {
   return (
     <>
       {label && (
-        <TouchableOpacity
-          style={[
-            styles.chip,
-            { backgroundColor: bgColor }, // Apply dynamic background color
-          ]}
-        >
+        <TouchableOpacity style={[styles.chip, { backgroundColor: bgColor }]}>
           <Text
             style={[styles.label, styles.labelSelected, { color: textColor }]}
           >
