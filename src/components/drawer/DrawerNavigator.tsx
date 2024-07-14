@@ -6,42 +6,39 @@ import {
   DrawerContentComponentProps,
 } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "@screens/HomeScreen";
+import Home from "@screens/Home";
 import React from "react";
 import CustomDrawer from "./CustomDrawer";
-const Drawer = createDrawerNavigator();
-const Stack = createStackNavigator();
+import CustomHeaderWithBack from "@components/header/BackNavigation";
+export type RootStackParamList = {
+  Home: undefined;
+  ProductDetail: { id: number };
+};
 
-const HomeScreenStack = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{
-          headerTitle: () => <CustomHeaderTitle />,
-          headerLeft: () => null,
-        }}
-      />
-    </Stack.Navigator>
-  );
-};
-const ProductDetailScreenStack = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="ProductDetail"
-        component={ProductDetail}
-        options={{
-          headerTitle: () => <CustomHeaderTitle />,
-          headerLeft: () => null,
-        }}
-      />
-    </Stack.Navigator>
-  );
-};
+const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
+
+const HomeStackNavigator = () => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="Home"
+      component={Home}
+      options={{
+        headerTitle: () => <CustomHeaderTitle />,
+        headerLeft: () => null,
+      }}
+    />
+    <Stack.Screen
+      name="ProductDetail"
+      component={ProductDetail}
+      options={{
+        headerTitle: () => <CustomHeaderWithBack />,
+        headerLeft: () => null,
+      }}
+    />
+  </Stack.Navigator>
+);
 const CustomDrawerContent: React.FC<DrawerContentComponentProps> = (props) => {
-  // Custom Drawer content component
   return <CustomDrawer {...props} />;
 };
 export const DrawerNavigator: React.FC = () => {
@@ -49,14 +46,11 @@ export const DrawerNavigator: React.FC = () => {
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
-        headerShown: false, // Hide header for all screens in DrawerNavigator
+        headerShown: false,
       }}
+      initialRouteName="Home"
     >
-      <Drawer.Screen name="Home" component={HomeScreenStack} />
-      <Drawer.Screen
-        name="ProductDetail"
-        component={ProductDetailScreenStack}
-      />
+      <Drawer.Screen name="Home" component={HomeStackNavigator} />
     </Drawer.Navigator>
   );
 };

@@ -1,7 +1,9 @@
+import { RootStackParamList } from "@components/drawer/DrawerNavigator";
 import Chip from "@components/util-components/Chip";
 import StrikethroughText from "@components/util-components/StrikethroughText";
 import Strong from "@components/util-components/Strong";
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { Item } from "@types/product";
 import { CHIPSYALLA, COUNTRIES } from "@utils/constant";
 import {
@@ -13,12 +15,13 @@ import {
   View,
 } from "react-native";
 const { width } = Dimensions.get("screen");
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
 
 interface ProductCardProps {
   product: Item;
 }
 const ProductCard = (productItem: ProductCardProps) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<HomeScreenNavigationProp>();
 
   const { product } = productItem || {};
   const { small_image, name, price_range, is_yalla, id } = product || {};
@@ -26,7 +29,7 @@ const ProductCard = (productItem: ProductCardProps) => {
   const { discount, final_price, regular_price } = minimum_price || {};
 
   const handleNavigate = (item: Item) => () => {
-    navigation.navigate("ProductDetail", { item });
+    navigation.navigate("ProductDetail", { id: item.id });
   };
 
   return (

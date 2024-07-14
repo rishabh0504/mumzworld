@@ -1,16 +1,29 @@
-import { RouteProp } from "@react-navigation/native";
-import { Item } from "@types/product";
-import { Text, View } from "react-native";
-interface ProductCardProps {
-  item: Item;
-}
-type DetailsScreenRouteProp = RouteProp<ProductCardProps, "ProductDetail">;
+import { RootStackParamList } from "@components/drawer/DrawerNavigator";
+import { RouteProp, useNavigation } from "@react-navigation/native";
+import { StyleSheet, Text, View } from "react-native";
+type ProductDetailScreenRouteProp = RouteProp<
+  RootStackParamList,
+  "ProductDetail"
+>;
+type Props = {
+  route: ProductDetailScreenRouteProp;
+};
 
-export const ProductDetail: React.FC<ProductCardProps> = (item) => {
+export const ProductDetail = ({ route }: Props) => {
+  const { id } = route.params || {};
+  const navigation = useNavigation<ProductDetailScreenRouteProp>();
+
   return (
-    <View>
-      <Text>ProductDetail</Text>
+    <View style={styles.container}>
+      <Text>Product Detail for ID:{id}</Text>
     </View>
   );
 };
 export default ProductDetail;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
