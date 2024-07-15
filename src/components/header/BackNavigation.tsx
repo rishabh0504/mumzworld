@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { resetCurrentProductViewing } from "src/slice/product.slice";
 import { AppDispatch } from "src/store";
 import Back_Logo from "@assets/icons/back.png";
-import { responsiveFontSize } from "@utils/style/responsive-font";
+import { responsiveFontSize } from "@utils/style/responsive";
 
 const CustomHeaderWithBack = () => {
   const navigation = useNavigation();

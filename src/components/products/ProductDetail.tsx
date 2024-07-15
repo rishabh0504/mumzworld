@@ -10,7 +10,7 @@ import { RootState } from "src/store";
 import ProductImageSlider from "./ImageSlider";
 import Like from "@assets/icons/love.png";
 import Bag from "@assets/icons/bag.png";
-import { responsiveFontSize } from "@utils/style/responsive-font";
+import { responsiveFontSize, responsiveHeight } from "@utils/style/responsive";
 type ProductDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   "ProductDetail"
@@ -52,7 +52,7 @@ export const ProductDetail = ({ route }: Props) => {
                 ? `-${price_range?.minimum_price?.discount?.percent_off}%`
                 : undefined
             }
-            bgColor={THEME_COLORS["semantic.fg.secondary"]}
+            bgColor={THEME_COLORS["semantic.fg.accent"]}
             textColor={THEME_COLORS["semantic.bg.white"]}
           />
         </View>
@@ -62,7 +62,13 @@ export const ProductDetail = ({ route }: Props) => {
         </View>
       </View>
       <View style={styles.strikeWrapper}>
-        <StrikethroughText style={{ paddingTop: 4, fontSize: 16 }}>
+        <StrikethroughText
+          style={{
+            paddingTop: 4,
+            fontSize: 16,
+            color: THEME_COLORS["semantic.fg.weak"],
+          }}
+        >
           {price_range?.minimum_price?.regular_price?.value?.toFixed(2)}
         </StrikethroughText>
         <Text style={styles.taxText}>{Label.INCLUDING_TAX}</Text>
@@ -77,19 +83,19 @@ const styles = StyleSheet.create({
     backgroundColor: THEME_COLORS["semantic.bg.white"],
   },
   title: {
-    fontSize: responsiveFontSize(18),
+    fontSize: responsiveFontSize(16),
     fontWeight: "bold",
     paddingLeft: 10,
     paddingRight: 10,
   },
   exploreBrand: {
     color: THEME_COLORS["semantic.fg.link"],
-    fontSize: responsiveFontSize(16),
+    fontSize: responsiveFontSize(14),
     paddingLeft: 10,
     paddingRight: 10,
   },
   price: {
-    fontSize: responsiveFontSize(18),
+    fontSize: responsiveFontSize(16),
     color: THEME_COLORS["semantic.fg.text"],
     paddingTop: 5,
     paddingLeft: 10,
@@ -106,7 +112,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "flex-start",
-    maxHeight: 35,
+    maxHeight: responsiveHeight(35),
     marginTop: 10,
   },
   priceView: {
@@ -121,7 +127,7 @@ const styles = StyleSheet.create({
   },
   image: {
     maxWidth: 30,
-    maxHeight: 30,
+    maxHeight: responsiveHeight(30),
     justifyContent: "flex-end",
     alignSelf: "flex-end",
   },
@@ -135,6 +141,7 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     paddingLeft: 10,
     paddingRight: 10,
-    fontSize: responsiveFontSize(16),
+    fontSize: responsiveFontSize(14),
+    color: THEME_COLORS["semantic.fg.weak"],
   },
 });

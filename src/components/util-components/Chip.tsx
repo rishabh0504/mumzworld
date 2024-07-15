@@ -1,3 +1,4 @@
+import { responsiveFontSize } from "@utils/style/responsive";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 interface ChipProps {
@@ -26,11 +27,10 @@ const styles = StyleSheet.create({
     margin: 4,
     alignItems: "center",
     justifyContent: "center",
-    width: 55,
-    fontSize: 10,
+    fontSize: responsiveFontSize(10),
   },
   label: {
-    fontSize: 12,
+    fontSize: responsiveFontSize(12),
     fontWeight: "bold",
   },
 });

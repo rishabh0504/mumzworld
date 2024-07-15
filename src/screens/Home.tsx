@@ -1,6 +1,6 @@
 import ProductList from "@components/products/ProductList";
 import { THEME_COLORS } from "@utils/constant/constant";
-import { responsiveFontSize } from "@utils/style/responsive-font";
+import { responsiveFontSize } from "@utils/style/responsive";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 

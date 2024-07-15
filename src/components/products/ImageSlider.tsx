@@ -1,3 +1,4 @@
+import { responsiveHeight } from "@utils/style/responsive";
 import React, { useRef } from "react";
 import { Dimensions, FlatList, Image, StyleSheet, View } from "react-native";
 
@@ -30,7 +31,7 @@ const ProductImageSlider = ({ images }) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: height / 3,
+    height: responsiveHeight(height / 3),
   },
   slide: {
     width: width,
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: height / 3,
+    height: responsiveHeight(height / 3),
   },
 });
 

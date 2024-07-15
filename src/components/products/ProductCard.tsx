@@ -20,7 +20,7 @@ import { CHIPSYALLA, COUNTRIES, THEME_COLORS } from "@utils/constant/constant";
 import { Item } from "@utils/types/product";
 import { currentProductViewing } from "src/slice/product.slice";
 import { AppDispatch } from "src/store";
-import { responsiveFontSize } from "@utils/style/responsive-font";
+import { responsiveFontSize, responsiveHeight } from "@utils/style/responsive";
 
 const { width } = Dimensions.get("screen");
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
@@ -148,13 +148,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    maxHeight: 40,
+    maxHeight: responsiveHeight(40),
   },
   center: { justifyContent: "flex-start" },
   flexEnd: { justifyContent: "flex-end" },
   like: {
     maxWidth: 25,
-    maxHeight: 25,
+    maxHeight: responsiveHeight(25),
     justifyContent: "flex-end",
     alignSelf: "flex-end",
   },
@@ -163,18 +163,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     marginTop: 20,
-    maxHeight: 30,
+    maxHeight: responsiveHeight(40),
   },
   cartImage: {
     width: 25,
-    height: 25,
+    height: responsiveHeight(25),
     justifyContent: "flex-end",
     alignSelf: "flex-end",
   },
   priceWrapper: {
     flex: 1,
     width: "100%",
-    maxHeight: 30,
+    maxHeight: responsiveHeight(30),
     flexDirection: "row",
   },
   strike: {

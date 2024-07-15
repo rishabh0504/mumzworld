@@ -24,4 +24,5 @@ export const Label = {
     EXPLORE_BRAND: "Explore Brands",
     INCLUDING_TAX: "Including Tax"
 }
-
+export const BATCH_SIZE = 20
+export const REACHED_THRESHOLD = 0.5

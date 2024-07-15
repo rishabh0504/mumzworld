@@ -1,17 +1,9 @@
 import { DrawerNavigator } from "@components/drawer/DrawerNavigator";
 import useMascotAnimation from "@hooks/useMascotAnimation";
 import { NavigationContainer } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
-import * as Localization from "expo-localization";
+import React, { useState } from "react";
 
-import {
-  Animated,
-  Dimensions,
-  I18nManager,
-  Image,
-  StyleSheet,
-  View,
-} from "react-native";
+import { Animated, Dimensions, Image, StyleSheet, View } from "react-native";
 import { Provider } from "react-redux";
 import store from "src/store";
 import Logo from "./src/assets/logo.png";

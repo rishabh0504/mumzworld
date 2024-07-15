@@ -17,7 +17,7 @@ import Home_Logo from "@assets/icons/home.png";
 import Sale_Logo from "@assets/icons/sale.png";
 import Love_Logo from "@assets/icons/love.png";
 import Account_Logo from "@assets/icons/account.png";
-import { responsiveFontSize } from "@utils/style/responsive-font";
+import { responsiveFontSize } from "@utils/style/responsive";
 
 interface MenuItem {
   id: string;
