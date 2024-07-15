@@ -25,10 +25,7 @@ const CustomHeader: React.FC = () => {
   return (
     <View style={[styles.container, { width: width - 40 }]}>
       <View style={styles.columnLeft}>
-        <TouchableOpacity
-          onPress={openDrawer}
-          style={{ justifyContent: "center" }}
-        >
+        <TouchableOpacity onPress={openDrawer} style={styles.center}>
           <Image source={Menu_Logo} style={styles.menuImage} />
         </TouchableOpacity>
         <Image source={Logo} style={styles.logoImage} />
@@ -86,4 +83,5 @@ const styles = StyleSheet.create({
     height: 25,
     width: 25,
   },
+  center: { justifyContent: "center" },
 });

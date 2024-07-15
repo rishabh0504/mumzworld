@@ -3,7 +3,7 @@ import Chip from "@components/util-components/Chip";
 import StrikethroughText from "@components/util-components/StrikethroughText";
 import Strong from "@components/util-components/Strong";
 import { RouteProp } from "@react-navigation/native";
-import { THEME_COLORS } from "@utils/constant/constant";
+import { Label, THEME_COLORS } from "@utils/constant/constant";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import { RootState } from "src/store";
@@ -22,29 +22,11 @@ export const ProductDetail = ({ route }: Props) => {
   const { currentProductViewing, loading, error } = useSelector(
     (state: RootState) => state.items
   );
-  const {
-    brand_info,
-    categories,
-    is_yalla,
-    name,
-    price,
-    price_range,
-    base_price_range,
-    product_label,
-    small_image,
-    stock_status,
-  } = currentProductViewing || {};
+  const { name, price_range, small_image } = currentProductViewing || {};
   return (
     <View style={styles.container}>
       <ProductImageSlider images={[small_image?.url]} />
-      <View
-        style={{
-          flexDirection: "row",
-          width: "100%",
-          marginTop: 20,
-          justifyContent: "space-between",
-        }}
-      >
+      <View style={styles.productDetailWrapper}>
         <View style={{ flex: 2 }}>
           <Strong style={styles.title} numberOfLines={4}>
             {name}
@@ -52,27 +34,12 @@ export const ProductDetail = ({ route }: Props) => {
         </View>
         <View style={{ flex: 1 }}>
           <Strong style={styles.exploreBrand} numberOfLines={2}>
-            Explore Brands
+            {Label.EXPLORE_BRAND}
           </Strong>
         </View>
       </View>
-      <View
-        style={{
-          flex: 1,
-          width: "100%",
-          flexDirection: "row",
-          justifyContent: "flex-start",
-          maxHeight: 35,
-          marginTop: 10,
-        }}
-      >
-        <View
-          style={{
-            flex: 2,
-            flexDirection: "row",
-            justifyContent: "flex-start",
-          }}
-        >
+      <View style={styles.priceDetail}>
+        <View style={styles.priceView}>
           <Strong style={styles.price} numberOfLines={1}>
             {price_range?.minimum_price?.final_price?.currency}{" "}
             {price_range?.minimum_price?.final_price?.value?.toFixed(2)}
@@ -88,54 +55,16 @@ export const ProductDetail = ({ route }: Props) => {
             textColor={THEME_COLORS["semantic.bg.white"]}
           />
         </View>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-          }}
-        >
-          <Image
-            source={Like}
-            style={{
-              maxWidth: 30,
-              maxHeight: 30,
-              justifyContent: "flex-end",
-              alignSelf: "flex-end",
-            }}
-          />
-          <Image
-            source={Bag}
-            style={{
-              maxWidth: 30,
-              maxHeight: 30,
-              justifyContent: "flex-end",
-              alignSelf: "flex-end",
-            }}
-          />
+        <View style={styles.cartWrapper}>
+          <Image source={Like} style={styles.image} />
+          <Image source={Bag} style={styles.image} />
         </View>
       </View>
-      <View
-        style={{
-          flex: 1,
-          paddingLeft: 10,
-          paddingRight: 10,
-          flexDirection: "row",
-        }}
-      >
+      <View style={styles.strikeWrapper}>
         <StrikethroughText style={{ paddingTop: 4, fontSize: 16 }}>
           {price_range?.minimum_price?.regular_price?.value?.toFixed(2)}
         </StrikethroughText>
-        <Text
-          style={{
-            paddingTop: 4,
-            paddingLeft: 10,
-            paddingRight: 10,
-            fontSize: 16,
-          }}
-        >
-          Including Tax
-        </Text>
+        <Text style={styles.taxText}>{Label.INCLUDING_TAX}</Text>
       </View>
     </View>
   );
@@ -164,5 +93,47 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingLeft: 10,
     paddingRight: 10,
+  },
+  productDetailWrapper: {
+    flexDirection: "row",
+    width: "100%",
+    marginTop: 20,
+    justifyContent: "space-between",
+  },
+  priceDetail: {
+    flex: 1,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    maxHeight: 35,
+    marginTop: 10,
+  },
+  priceView: {
+    flex: 2,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+  },
+  cartWrapper: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  image: {
+    maxWidth: 30,
+    maxHeight: 30,
+    justifyContent: "flex-end",
+    alignSelf: "flex-end",
+  },
+  strikeWrapper: {
+    flex: 1,
+    paddingLeft: 10,
+    paddingRight: 10,
+    flexDirection: "row",
+  },
+  taxText: {
+    paddingTop: 4,
+    paddingLeft: 10,
+    paddingRight: 10,
+    fontSize: 16,
   },
 });

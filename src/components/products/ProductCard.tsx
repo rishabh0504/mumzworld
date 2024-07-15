@@ -1,11 +1,5 @@
-import { RootStackParamList } from "@components/drawer/DrawerNavigator";
-import Chip from "@components/util-components/Chip";
-import StrikethroughText from "@components/util-components/StrikethroughText";
-import Strong from "@components/util-components/Strong";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { CHIPSYALLA, COUNTRIES, THEME_COLORS } from "@utils/constant/constant";
-import { Item } from "@utils/types/product";
 import {
   Dimensions,
   Image,
@@ -15,10 +9,17 @@ import {
   View,
 } from "react-native";
 import { useDispatch } from "react-redux";
+
+import Cart from "@assets/icons/cart.png";
+import Like from "@assets/icons/love.png";
+import { RootStackParamList } from "@components/drawer/DrawerNavigator";
+import Chip from "@components/util-components/Chip";
+import StrikethroughText from "@components/util-components/StrikethroughText";
+import Strong from "@components/util-components/Strong";
+import { CHIPSYALLA, COUNTRIES, THEME_COLORS } from "@utils/constant/constant";
+import { Item } from "@utils/types/product";
 import { currentProductViewing } from "src/slice/product.slice";
 import { AppDispatch } from "src/store";
-import Like from "@assets/icons/love.png";
-import Cart from "@assets/icons/cart.png";
 
 const { width } = Dimensions.get("screen");
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
@@ -47,7 +48,7 @@ const ProductCard = (productItem: ProductCardProps) => {
     >
       <View style={styles.card}>
         <View style={[styles.offer_favourite_wrapper]}>
-          <View style={{ justifyContent: "flex-start" }}>
+          <View style={styles.center}>
             <Chip
               label={
                 discount && discount.percent_off !== 0
@@ -58,16 +59,8 @@ const ProductCard = (productItem: ProductCardProps) => {
               textColor={THEME_COLORS["semantic.fg.white"]}
             />
           </View>
-          <View style={{ justifyContent: "flex-end" }}>
-            <Image
-              source={Like}
-              style={{
-                maxWidth: 25,
-                maxHeight: 25,
-                justifyContent: "flex-end",
-                alignSelf: "flex-end",
-              }}
-            />
+          <View style={styles.flexEnd}>
+            <Image source={Like} style={styles.like} />
           </View>
         </View>
         <Image
@@ -75,47 +68,24 @@ const ProductCard = (productItem: ProductCardProps) => {
           style={styles.image}
           resizeMode="cover"
         />
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            width: "100%",
-            marginTop: 20,
-            maxHeight: 30,
-          }}
-        >
+        <View style={styles.productDetailWrapper}>
           <View style={{ flex: 3 }}>
             <Text style={styles.title} numberOfLines={2}>
               {name.length < 24 ? `${name}` : `${name.substring(0, 24)}...`}
             </Text>
           </View>
           <View style={{ flex: 1 }}>
-            <Image
-              source={Cart}
-              style={{
-                width: 25,
-                height: 25,
-                justifyContent: "flex-end",
-                alignSelf: "flex-end",
-              }}
-            />
+            <Image source={Cart} style={styles.cartImage} />
           </View>
         </View>
-        <View
-          style={{
-            flex: 1,
-            width: "100%",
-            maxHeight: 30,
-            flexDirection: "row",
-          }}
-        >
+        <View style={styles.priceWrapper}>
           <View style={{ flex: 1 }}>
             <Strong style={styles.price} numberOfLines={1}>
               {final_price?.currency} {final_price?.value?.toFixed(2)}
             </Strong>
           </View>
           <View style={{ flex: 1 }}>
-            <StrikethroughText style={{ paddingTop: 4, fontSize: 12 }}>
+            <StrikethroughText style={styles.strike}>
               {regular_price?.value?.toFixed(2)}
             </StrikethroughText>
           </View>
@@ -164,6 +134,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 12,
     fontWeight: "bold",
+    color: THEME_COLORS["semantic.fg.text"],
   },
   price: {
     fontSize: 12,
@@ -177,5 +148,37 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     maxHeight: 40,
+  },
+  center: { justifyContent: "flex-start" },
+  flexEnd: { justifyContent: "flex-end" },
+  like: {
+    maxWidth: 25,
+    maxHeight: 25,
+    justifyContent: "flex-end",
+    alignSelf: "flex-end",
+  },
+  productDetailWrapper: {
+    flex: 1,
+    flexDirection: "row",
+    width: "100%",
+    marginTop: 20,
+    maxHeight: 30,
+  },
+  cartImage: {
+    width: 25,
+    height: 25,
+    justifyContent: "flex-end",
+    alignSelf: "flex-end",
+  },
+  priceWrapper: {
+    flex: 1,
+    width: "100%",
+    maxHeight: 30,
+    flexDirection: "row",
+  },
+  strike: {
+    paddingTop: 4,
+    fontSize: 12,
+    color: THEME_COLORS["semantic.fg.weak"],
   },
 });
