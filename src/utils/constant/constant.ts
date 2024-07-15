@@ -19,6 +19,7 @@ export const THEME_COLORS = {
     "semantic.bg.white": "#ffffff",
     "semantic.support.yellow": "#f1be71",
     "semantic.fg.link": "#0583f2",
+    "semantic.fg.icon": "#0070be"
 }
 export const Label = {
     EXPLORE_BRAND: "Explore Brands",

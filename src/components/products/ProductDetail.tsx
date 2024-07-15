@@ -1,16 +1,16 @@
+import Bag from "@assets/icons/bag.png";
+import Like from "@assets/icons/love.png";
 import { RootStackParamList } from "@components/drawer/DrawerNavigator";
 import Chip from "@components/util-components/Chip";
 import StrikethroughText from "@components/util-components/StrikethroughText";
 import Strong from "@components/util-components/Strong";
 import { RouteProp } from "@react-navigation/native";
 import { Label, THEME_COLORS } from "@utils/constant/constant";
+import { responsiveFontSize, responsiveHeight } from "@utils/style/responsive";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import { RootState } from "src/store";
 import ProductImageSlider from "./ImageSlider";
-import Like from "@assets/icons/love.png";
-import Bag from "@assets/icons/bag.png";
-import { responsiveFontSize, responsiveHeight } from "@utils/style/responsive";
 type ProductDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   "ProductDetail"

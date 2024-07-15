@@ -1,8 +1,13 @@
+import Account_Logo from "@assets/icons/account.png";
+import Home_Logo from "@assets/icons/home.png";
+import Love_Logo from "@assets/icons/love.png";
+import Sale_Logo from "@assets/icons/sale.png";
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
 import { THEME_COLORS } from "@utils/constant/constant";
+import { responsiveFontSize } from "@utils/style/responsive";
 import React from "react";
 import {
   FlatList,
@@ -13,11 +18,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Home_Logo from "@assets/icons/home.png";
-import Sale_Logo from "@assets/icons/sale.png";
-import Love_Logo from "@assets/icons/love.png";
-import Account_Logo from "@assets/icons/account.png";
-import { responsiveFontSize } from "@utils/style/responsive";
 
 interface MenuItem {
   id: string;

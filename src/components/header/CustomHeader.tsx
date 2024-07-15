@@ -1,5 +1,4 @@
 import { DrawerActions, useNavigation } from "@react-navigation/native";
-import { THEME_COLORS } from "@utils/constant/constant";
 import React from "react";
 import {
   Image,
@@ -9,10 +8,11 @@ import {
   View,
 } from "react-native";
 
+import Bag from "@assets/icons/bag.png";
 import Menu_Logo from "@assets/icons/menu.png";
 import Search_Logo from "@assets/icons/search.png";
 import Logo from "@assets/logo.png";
-import Bag from "@assets/icons/bag.png";
+import { responsiveHeight } from "@utils/style/responsive";
 
 const CustomHeader: React.FC = () => {
   const navigation = useNavigation();
@@ -45,9 +45,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    backgroundColor: THEME_COLORS["semantic.bg.white"],
+    paddingVertical: 0,
+    height: responsiveHeight(60),
   },
   columnLeft: {
     flexDirection: "row",
@@ -58,8 +57,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   menuImage: {
-    height: 25,
-    width: 25,
+    height: 30,
+    width: 30,
     resizeMode: "contain",
   },
   logoImage: {
@@ -67,21 +66,21 @@ const styles = StyleSheet.create({
     marginLeft: 18,
     marginRight: 18,
     height: 100,
-    width: 100,
+    width: 150,
   },
   searchImage: {
     resizeMode: "contain",
     marginLeft: 10,
     marginRight: 10,
-    height: 25,
-    width: 25,
+    height: 30,
+    width: 30,
   },
   bagImage: {
     resizeMode: "contain",
     marginLeft: 10,
     marginRight: 10,
-    height: 25,
-    width: 25,
+    height: 30,
+    width: 30,
   },
   center: { justifyContent: "center" },
 });

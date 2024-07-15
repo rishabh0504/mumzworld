@@ -1,33 +1,33 @@
 import Loader from "@components/util-components/Loader";
 import { REACHED_THRESHOLD, THEME_COLORS } from "@utils/constant/constant";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "src/service/product.service";
 import { loadMoreProducts } from "src/slice/product.slice";
 import { AppDispatch, RootState } from "src/store";
 import ProductCard from "./ProductCard";
-
-const ProductList = () => {
+interface ProductListProps {
+  query?: string;
+}
+const ProductList: React.FC<ProductListProps> = ({ query }) => {
   const dispatch: AppDispatch = useDispatch();
-  const { products, loading, page, totalPages } = useSelector(
-    (state: RootState) => state.items
-  );
+  const { withFilterPagenation, withoutFilterPagenation, loading } =
+    useSelector((state: RootState) => state.items);
+  const { products, page, totalPages } = query
+    ? withFilterPagenation
+    : withoutFilterPagenation;
+
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
-
-  const handleMoreProducts = () => {
+  const handleMoreProducts = (query) => {
     if (isLoadingMore || page >= totalPages) return;
     setIsLoadingMore(true);
-    dispatch(loadMoreProducts());
+    dispatch(loadMoreProducts(query));
     setIsLoadingMore(false);
   };
 
-  const handleReachEnd = () => {
-    handleMoreProducts();
+  const handleReachEnd = (query: string) => () => {
+    handleMoreProducts(query);
   };
 
   return (
@@ -41,7 +41,7 @@ const ProductList = () => {
           renderItem={({ item }) => <ProductCard product={item} />}
           numColumns={2}
           contentContainerStyle={styles.flatListContainer}
-          onEndReached={handleReachEnd}
+          onEndReached={handleReachEnd(query)}
           onEndReachedThreshold={REACHED_THRESHOLD}
           ListFooterComponent={
             isLoadingMore && (
