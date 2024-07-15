@@ -21,8 +21,13 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli@3.5.2
 
-      - name: Authenticate with EAS
-        run: eas login --key ${{ secrets.MUMZWORLD_ACTION_KEY }}
+      - name: Log in to Expo
+        run: |
+          echo $EXPO_USERNAME
+          expo login --username $EXPO_USERNAME --password $EXPO_PASSCODE
+        env:
+          EXPO_USERNAME: ${{ secrets.EXPO_USERNAME }}
+          EXPO_PASSWORD: ${{ secrets.EXPO_PASSCODE }}
 
       - name: Build Android app
         run: eas build --platform android
