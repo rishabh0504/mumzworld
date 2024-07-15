@@ -1,8 +1,9 @@
 name: Build and Release APK
 
 on:
-  release:
-    types: [created] # Trigger on new releases
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -26,10 +27,10 @@ jobs:
       - name: Build APK
         run: |
           expo build:android --non-interactive --release-channel=${GITHUB_SHA::8}  # Adjust as per your Expo build command
-          mv ./android/app/build/outputs/apk/release/app-release.apk mumzworld-$GITHUB_SHA.apk
+          mv ./android/app/build/outputs/apk/release/app-release.apk Mumzworld-$GITHUB_SHA.apk
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v2
         with:
           name: app-release
-          path: mumzworld-$GITHUB_SHA.apk
+          path: Mumzworld-$GITHUB_SHA.apk
