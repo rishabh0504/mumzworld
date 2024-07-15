@@ -16,13 +16,13 @@ jobs:
       - name: Install Node.js and dependencies
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: "18"
 
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
       - name: Authenticate with EAS
-        run: eas login -u ${{ secrets.EXPO_USERNAME }} -p ${{ secrets.EXPO_PASSCODE }}
+        run: eas login --key ${{ secrets.MUMZWORLD_ACTION_KEY }}
 
       - name: Build Android app
         run: eas build --platform android
