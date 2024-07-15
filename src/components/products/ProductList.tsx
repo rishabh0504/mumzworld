@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "src/service/product.service";
 import { AppDispatch, RootState } from "src/store";
 import ProductCard from "./ProductCard";
-import { BATCH_SIZE, REACHED_THRESHOLD } from "@utils/constant/constant";
 
 const ProductList = () => {
   const dispatch: AppDispatch = useDispatch();
