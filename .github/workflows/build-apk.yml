@@ -1,4 +1,4 @@
-name: Build and Publish to Expo
+name: Build and Release APK
 
 on:
   push:
@@ -6,10 +6,11 @@ on:
       - main
 
 jobs:
-  build-and-publish:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Set up Node.js
@@ -17,9 +18,21 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Install Expo CLI
+      - name: Install Expo CLI and yarn
         run: npm install -g expo-cli yarn
 
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build APK
+        run: |
+          expo build:android --non-interactive --release-channel=${GITHUB_SHA::8}  # Adjust as per your Expo build command
+          mv ./android/app/build/outputs/apk/release/app-release.apk Mumzworld-$GITHUB_SHA.apk
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release
+          path: Mumzworld-$GITHUB_SHA.apk
       - name: Log in to Expo with EAS
         env:
           EXPO_CLI_PASSWORD: ${{ secrets.MUMZWORLD_ACTION_KEY }}
@@ -27,19 +40,3 @@ jobs:
 
       - name: Build and Publish
         run: expo eas build --platform android --profile rishabh0504
-
-       - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Build APK
-        run: |
-          expo build:android --non-interactive --release-channel=${GITHUB_SHA::8}  # Adjust as per your Expo build command
-          mv ./android/app/build/outputs/apk/release/app-release.apk Mumzworld-$GITHUB_SHA.apk
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: app-release
-          path: Mumzworld-$GITHUB_SHA.apk
-
-      # Add more steps for additional workflows, like publishing to stores, if needed
