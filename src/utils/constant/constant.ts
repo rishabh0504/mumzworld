@@ -25,4 +25,4 @@ export const Label = {
     INCLUDING_TAX: "Including Tax"
 }
 export const BATCH_SIZE = 20
-export const REACHED_THRESHOLD = 0.3
+export const REACHED_THRESHOLD = 0.5

@@ -8,6 +8,10 @@ const rootReducer = {
 
 const store = configureStore({
     reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false, // Disable serializable state invariant middleware
+        }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

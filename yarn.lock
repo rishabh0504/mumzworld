@@ -1641,9 +1641,9 @@
     use-latest-callback "^0.1.9"
 
 "@react-navigation/drawer@^6.7.0":
-  version "6.7.0"
-  resolved "https://registry.yarnpkg.com/@react-navigation/drawer/-/drawer-6.7.0.tgz#400eea639b769daf588995a2876ee57706400f0b"
-  integrity sha512-qvv99Dh2mfUkcr5sgt+o1aHdcB+DjEmpzRxsXL+Hz2Pc0dZ4IxOB/KqEvRROQ4O1oGNLTEJVk84yBnRwbdil1A==
+  version "6.7.1"
+  resolved "https://registry.yarnpkg.com/@react-navigation/drawer/-/drawer-6.7.1.tgz#9995ff42022b9d70a734a39247beac24992dfb1a"
+  integrity sha512-CDAlPQwXiV7a8tOZoI48x+f1IrjMC3QoiPthu5k+5CCbpNY/CxLxDGU94jw9+UtZhX3AEh32RY9FoIPAcyeKwA==
   dependencies:
     "@react-navigation/elements" "^1.3.30"
     color "^4.2.3"
@@ -2404,9 +2404,9 @@ camelcase@^6.2.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001640:
-  version "1.0.30001641"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001641.tgz#3572862cd18befae3f637f2a1101cc033c6782ac"
-  integrity sha512-Phv5thgl67bHYo1TtMY/MurjkHhV4EDaCosezRXgZ8jzA/Ub+wjxAvbGvjoFENStinwi5kCyOYV3mi5tOGykwA==
+  version "1.0.30001642"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001642.tgz#6aa6610eb24067c246d30c57f055a9d0a7f8d05f"
+  integrity sha512-3XQ0DoRgLijXJErLSl+bLnJ+Et4KqV1PY6JJBGAFlsNsz31zeAIncyeZfLCabHK/jtSh+671RM9YMldxjUPZtA==
 
 chalk@4, chalk@^4.0.0, chalk@^4.1.0, chalk@^4.1.2:
   version "4.1.2"
@@ -3163,7 +3163,7 @@ expo-keep-awake@~13.0.2:
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-13.0.2.tgz#5ef31311a339671eec9921b934fdd90ab9652b0e"
   integrity sha512-kKiwkVg/bY0AJ5q1Pxnm/GvpeB6hbNJhcFsoOWDh2NlpibhCLaHL826KHUM+WsnJRbVRxJ+K9vbPRHEMvFpVyw==
 
-expo-localization@~15.0.3:
+expo-localization@^15.0.3:
   version "15.0.3"
   resolved "https://registry.yarnpkg.com/expo-localization/-/expo-localization-15.0.3.tgz#772c89b3ab9c925b7eca6911a11ca33980c2b674"
   integrity sha512-IfcmlKuKRlowR9qIzL0e+nGHBeNoF7l2GQaOJstc7HZiPjNJ4J1R4D53ZNf483dt7JSkTRJBihdTadOtOEjRdg==
