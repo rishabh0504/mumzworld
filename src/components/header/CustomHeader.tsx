@@ -1,4 +1,5 @@
 import { DrawerActions, useNavigation } from "@react-navigation/native";
+import { THEME_COLORS } from "@utils/constant/constant";
 import React from "react";
 import {
   Image,
@@ -8,7 +9,12 @@ import {
   View,
 } from "react-native";
 
-const CustomHeaderTitle: React.FC = () => {
+import Menu_Logo from "@assets/icons/menu.png";
+import Search_Logo from "@assets/icons/search.png";
+import Logo from "@assets/logo.png";
+import Bag from "@assets/icons/bag.png";
+
+const CustomHeader: React.FC = () => {
   const navigation = useNavigation();
   const { width } = useWindowDimensions();
 
@@ -23,51 +29,35 @@ const CustomHeaderTitle: React.FC = () => {
           onPress={openDrawer}
           style={{ justifyContent: "center" }}
         >
-          <Image
-            source={require("../../assets/icon.png")}
-            style={styles.menuImage}
-          />
+          <Image source={Menu_Logo} style={styles.menuImage} />
         </TouchableOpacity>
-        <Image
-          source={require("../../assets/logo.png")}
-          style={styles.logoImage}
-        />
+        <Image source={Logo} style={styles.logoImage} />
       </View>
       <View style={styles.columnRight}>
-        <Image
-          source={require("../../assets/search.png")}
-          style={styles.searchImage}
-        />
-        <Image
-          source={require("../../assets/bag.png")}
-          style={styles.bagImage}
-        />
+        <Image source={Search_Logo} style={styles.searchImage} />
+        <Image source={Bag} style={styles.bagImage} />
       </View>
     </View>
   );
 };
 
-export default CustomHeaderTitle;
+export default CustomHeader;
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    flex: 1,
-    width: "100%",
-    height: 200,
     justifyContent: "space-between",
     alignItems: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: THEME_COLORS["semantic.bg.white"],
   },
   columnLeft: {
-    flex: 2,
     flexDirection: "row",
-    justifyContent: "flex-start",
     alignItems: "center",
   },
   columnRight: {
-    flex: 2,
     flexDirection: "row",
-    justifyContent: "flex-end",
     alignItems: "center",
   },
   menuImage: {

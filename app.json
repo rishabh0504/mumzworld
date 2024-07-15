@@ -6,11 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android", "web"],
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -34,6 +30,8 @@
       "eas": {
         "projectId": "88899afc-1ee7-4c22-9273-ec6974b306ec"
       }
-    }
+    },
+    "plugins": ["expo-localization"]
   }
 }
+

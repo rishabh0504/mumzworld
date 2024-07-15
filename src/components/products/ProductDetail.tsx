@@ -8,6 +8,8 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import { RootState } from "src/store";
 import ProductImageSlider from "./ImageSlider";
+import Like from "@assets/icons/love.png";
+import Bag from "@assets/icons/bag.png";
 type ProductDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   "ProductDetail"
@@ -94,7 +96,7 @@ export const ProductDetail = ({ route }: Props) => {
           }}
         >
           <Image
-            source={require("../../assets/navigation/love.png")}
+            source={Like}
             style={{
               maxWidth: 30,
               maxHeight: 30,
@@ -103,7 +105,7 @@ export const ProductDetail = ({ route }: Props) => {
             }}
           />
           <Image
-            source={require("../../assets/bag.png")}
+            source={Bag}
             style={{
               maxWidth: 30,
               maxHeight: 30,

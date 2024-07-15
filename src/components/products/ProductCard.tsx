@@ -17,6 +17,9 @@ import {
 import { useDispatch } from "react-redux";
 import { currentProductViewing } from "src/slice/product.slice";
 import { AppDispatch } from "src/store";
+import Like from "@assets/icons/love.png";
+import Cart from "@assets/icons/cart.png";
+
 const { width } = Dimensions.get("screen");
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
 
@@ -57,7 +60,7 @@ const ProductCard = (productItem: ProductCardProps) => {
           </View>
           <View style={{ justifyContent: "flex-end" }}>
             <Image
-              source={require("../../assets/navigation/love.png")}
+              source={Like}
               style={{
                 maxWidth: 25,
                 maxHeight: 25,
@@ -88,7 +91,7 @@ const ProductCard = (productItem: ProductCardProps) => {
           </View>
           <View style={{ flex: 1 }}>
             <Image
-              source={require("../../assets/navigation/cart.png")}
+              source={Cart}
               style={{
                 width: 25,
                 height: 25,

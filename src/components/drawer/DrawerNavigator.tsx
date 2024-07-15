@@ -1,15 +1,17 @@
-// DrawerNavigator.tsx
-import CustomHeaderWithBack from "@components/header/BackNavigation";
-import CustomHeaderTitle from "@components/header/CustomHeaderTitle";
-import ProductDetail from "@components/products/ProductDetail";
+import React from "react";
 import {
   createDrawerNavigator,
   DrawerContentComponentProps,
 } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
+
+import CustomHeaderWithBack from "@components/header/BackNavigation";
+import ProductDetail from "@components/products/ProductDetail";
+
 import Home from "@screens/Home";
-import React from "react";
 import CustomDrawer from "./CustomDrawer";
+import CustomHeader from "@components/header/CustomHeader";
+
 export type RootStackParamList = {
   Home: undefined;
   ProductDetail: { id: number };
@@ -24,7 +26,7 @@ const HomeStackNavigator = () => (
       name="Home"
       component={Home}
       options={{
-        headerTitle: () => <CustomHeaderTitle />,
+        headerTitle: () => <CustomHeader />,
         headerLeft: () => null,
       }}
     />

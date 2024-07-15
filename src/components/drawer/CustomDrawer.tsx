@@ -13,6 +13,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Home_Logo from "@assets/icons/home.png";
+import Sale_Logo from "@assets/icons/sale.png";
+import Love_Logo from "@assets/icons/love.png";
+import Account_Logo from "@assets/icons/account.png";
 
 interface MenuItem {
   id: string;
@@ -26,35 +30,35 @@ const menuItems: MenuItem[] = [
     id: "1",
     title: "Home",
     screen: "Home",
-    icon: require("../../assets/navigation/home.png"),
+    icon: Home_Logo,
   },
   {
     id: "2",
     title: "Sale",
     screen: "Sale",
-    icon: require("../../assets/navigation/sale.png"),
+    icon: Sale_Logo,
   },
   {
     id: "3",
     title: "Wishlist",
     screen: "Wishlist",
-    icon: require("../../assets/navigation/love.png"),
+    icon: Love_Logo,
   },
   {
     id: "4",
     title: "My Account",
     screen: "MyAccount",
-    icon: require("../../assets/navigation/account.png"),
+    icon: Account_Logo,
   },
 ];
 
 const CustomDrawer: React.FC<DrawerContentComponentProps> = (props) => {
+  const navigateTo = (item) => () => {
+    props.navigation.navigate(item.screen);
+  };
   const renderItem = ({ item }: { item: MenuItem }) => (
-    <TouchableOpacity
-      style={styles.item}
-      onPress={() => props.navigation.navigate(item.screen)}
-    >
-      <Image source={item.icon} style={{ height: 20, width: 20 }} />
+    <TouchableOpacity style={styles.item} onPress={navigateTo(item)}>
+      <Image source={item.icon} style={styles.drawerImage} />
       <Text style={styles.itemText}>{item.title}</Text>
     </TouchableOpacity>
   );
@@ -88,6 +92,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
+  drawerImage: { height: 20, width: 20 },
 });
 
 export default CustomDrawer;
