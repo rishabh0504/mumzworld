@@ -19,7 +19,7 @@ jobs:
           node-version: "14"
 
       - name: Install EAS CLI
-        run: npm install -g eas-cli
+        run: npm install -g eas-cli@3.5.2
 
       - name: Authenticate with EAS
         run: eas login --key ${{ secrets.MUMZWORLD_ACTION_KEY }}
