@@ -1,42 +1,30 @@
-name: Build and Release APK
+name: EAS Build
 
 on:
   push:
     branches:
-      - main
+      - main # Adjust branch as needed
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
+      - name: Install Node.js and dependencies
         uses: actions/setup-node@v2
         with:
-          node-version: "18"
+          node-version: "14"
 
-      - name: Install Expo CLI and yarn
-        run: npm install -g expo-cli yarn
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      - name: Authenticate with EAS
+        run: eas login -u ${{ secrets.EXPO_USERNAME }} -p ${{ secrets.MUMZWORLD_ACTION_KEY }}
 
-      - name: Build APK
-        run: |
-          expo build:android --non-interactive --release-channel=${GITHUB_SHA::8}  # Adjust as per your Expo build command
-          mv ./android/app/build/outputs/apk/release/app-release.apk Mumzworld-$GITHUB_SHA.apk
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: app-release
-          path: Mumzworld-$GITHUB_SHA.apk
-      - name: Log in to Expo with EAS
-        env:
-          EXPO_CLI_PASSWORD: ${{ secrets.MUMZWORLD_ACTION_KEY }}
-        run: expo login --username rishabh0504
+      - name: Build Android app
+        run: eas build --platform android
 
-      - name: Build and Publish
-        run: expo eas build --platform android --profile rishabh0504
+      # Add steps to handle artifacts, notifications, etc.
