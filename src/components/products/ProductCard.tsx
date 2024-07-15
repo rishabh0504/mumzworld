@@ -20,6 +20,7 @@ import { CHIPSYALLA, COUNTRIES, THEME_COLORS } from "@utils/constant/constant";
 import { Item } from "@utils/types/product";
 import { currentProductViewing } from "src/slice/product.slice";
 import { AppDispatch } from "src/store";
+import { responsiveFontSize } from "@utils/style/responsive-font";
 
 const { width } = Dimensions.get("screen");
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
@@ -132,12 +133,12 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   title: {
-    fontSize: 12,
+    fontSize: responsiveFontSize(12),
     fontWeight: "bold",
     color: THEME_COLORS["semantic.fg.text"],
   },
   price: {
-    fontSize: 12,
+    fontSize: responsiveFontSize(12),
     color: THEME_COLORS["semantic.fg.text"],
     paddingTop: 5,
   },
@@ -178,7 +179,7 @@ const styles = StyleSheet.create({
   },
   strike: {
     paddingTop: 4,
-    fontSize: 12,
+    fontSize: responsiveFontSize(12),
     color: THEME_COLORS["semantic.fg.weak"],
   },
 });

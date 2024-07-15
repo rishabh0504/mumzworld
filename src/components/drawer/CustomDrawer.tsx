@@ -17,6 +17,7 @@ import Home_Logo from "@assets/icons/home.png";
 import Sale_Logo from "@assets/icons/sale.png";
 import Love_Logo from "@assets/icons/love.png";
 import Account_Logo from "@assets/icons/account.png";
+import { responsiveFontSize } from "@utils/style/responsive-font";
 
 interface MenuItem {
   id: string;
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   itemText: {
-    fontSize: 14,
+    fontSize: responsiveFontSize(14),
     paddingLeft: 10,
     paddingRight: 10,
   },

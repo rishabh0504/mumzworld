@@ -1,5 +1,6 @@
 import ProductList from "@components/products/ProductList";
 import { THEME_COLORS } from "@utils/constant/constant";
+import { responsiveFontSize } from "@utils/style/responsive-font";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
     backgroundColor: THEME_COLORS["semantic.bg.white"],
   },
   text: {
-    fontSize: 24,
+    fontSize: responsiveFontSize(24),
   },
 });
 

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { resetCurrentProductViewing } from "src/slice/product.slice";
 import { AppDispatch } from "src/store";
 import Back_Logo from "@assets/icons/back.png";
+import { responsiveFontSize } from "@utils/style/responsive-font";
 
 const CustomHeaderWithBack = () => {
   const navigation = useNavigation();
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   backText: {
-    fontSize: 18,
+    fontSize: responsiveFontSize(18),
     marginRight: 10,
   },
   title: {

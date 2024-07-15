@@ -10,6 +10,7 @@ import { RootState } from "src/store";
 import ProductImageSlider from "./ImageSlider";
 import Like from "@assets/icons/love.png";
 import Bag from "@assets/icons/bag.png";
+import { responsiveFontSize } from "@utils/style/responsive-font";
 type ProductDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   "ProductDetail"
@@ -76,19 +77,19 @@ const styles = StyleSheet.create({
     backgroundColor: THEME_COLORS["semantic.bg.white"],
   },
   title: {
-    fontSize: 18,
+    fontSize: responsiveFontSize(18),
     fontWeight: "bold",
     paddingLeft: 10,
     paddingRight: 10,
   },
   exploreBrand: {
     color: THEME_COLORS["semantic.fg.link"],
-    fontSize: 16,
+    fontSize: responsiveFontSize(16),
     paddingLeft: 10,
     paddingRight: 10,
   },
   price: {
-    fontSize: 18,
+    fontSize: responsiveFontSize(18),
     color: THEME_COLORS["semantic.fg.text"],
     paddingTop: 5,
     paddingLeft: 10,
@@ -134,6 +135,6 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     paddingLeft: 10,
     paddingRight: 10,
-    fontSize: 16,
+    fontSize: responsiveFontSize(16),
   },
 });
