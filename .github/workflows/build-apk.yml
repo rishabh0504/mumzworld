@@ -18,11 +18,11 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Install Expo CLI
-        run: npm install -g expo-cli
+      - name: Install Expo CLI and yarn
+        run: npm install -g expo-cli yarn
 
       - name: Install dependencies
-        run: npm install
+        run: yarn install --frozen-lockfile
 
       - name: Build APK
         run: |
