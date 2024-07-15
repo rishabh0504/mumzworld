@@ -14,7 +14,7 @@ export const fetchProducts = (): AppThunk => async (dispatch) => {
         if (!response.data.products.items) {
             throw new Error('Failed to fetch products');
         }
-        dispatch(fetchProductsSuccess(response?.data?.products?.items));
+        dispatch(fetchProductsSuccess(response?.data?.products));
     } catch (error) {
         dispatch(fetchProductsFailure(error.message || 'Failed to fetch products'));
     }
