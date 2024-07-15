@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import Chip from "@components/util-components/Chip"; // Adjust path as per your actual file structure
+import Chip from "@components/util-components/Chip";
 
 describe("Chip component", () => {
   it("renders correctly", () => {

@@ -1,9 +1,13 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 
-const Strong = ({ children, style, numberOfLines }) => {
+const Strong = ({ children = undefined, style = {}, numberOfLines = 1 }) => {
   return (
-    <Text style={[styles.strong, style]} numberOfLines={numberOfLines}>
+    <Text
+      style={[styles.strong, style]}
+      numberOfLines={numberOfLines}
+      testID="strong-text"
+    >
       {children}
     </Text>
   );

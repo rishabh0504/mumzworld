@@ -7,17 +7,22 @@ interface LoaderProps {
   visible: boolean;
 }
 
-const GifLoader: React.FC<LoaderProps> = ({ visible }) => {
+const Loader: React.FC<LoaderProps> = ({ visible }) => {
   return (
     <Modal
       animationType="fade"
       transparent={true}
       visible={visible}
       onRequestClose={() => {}}
+      testID="gif-loader-modal"
     >
       <View style={styles.modalBackground}>
         <View style={styles.activityIndicatorWrapper}>
-          <Image source={LOADER_GIF} style={styles.loaderImage} />
+          <Image
+            source={LOADER_GIF}
+            testID="gif-loader-image"
+            style={styles.loaderImage}
+          />
         </View>
       </View>
     </Modal>
@@ -45,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GifLoader;
+export default Loader;

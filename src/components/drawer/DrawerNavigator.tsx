@@ -19,8 +19,7 @@ export type RootStackParamList = {
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator<RootStackParamList>();
-
-const HomeStackNavigator = () => (
+export const HomeStackNavigator = () => (
   <Stack.Navigator>
     <Stack.Screen
       name="Home"
@@ -40,7 +39,9 @@ const HomeStackNavigator = () => (
     />
   </Stack.Navigator>
 );
-const CustomDrawerContent: React.FC<DrawerContentComponentProps> = (props) => {
+export const CustomDrawerContent: React.FC<DrawerContentComponentProps> = (
+  props
+) => {
   return <CustomDrawer {...props} />;
 };
 export const DrawerNavigator: React.FC = () => {

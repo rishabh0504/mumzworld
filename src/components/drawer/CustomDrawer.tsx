@@ -53,12 +53,23 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-const CustomDrawer: React.FC<DrawerContentComponentProps> = (props) => {
-  const navigateTo = (item) => () => {
-    props.navigation.navigate(item.screen);
+const CustomDrawer: React.FC<DrawerContentComponentProps> = (
+  props = {
+    state: undefined,
+    navigation: undefined,
+    descriptors: undefined,
+  }
+) => {
+  const navigateTo = (item: MenuItem) => () => {
+    props?.navigation?.navigate(item.screen);
   };
+
   const renderItem = ({ item }: { item: MenuItem }) => (
-    <TouchableOpacity style={styles.item} onPress={navigateTo(item)}>
+    <TouchableOpacity
+      style={styles.item}
+      onPress={navigateTo(item)}
+      testID={`menu-item-${item.screen}`}
+    >
       <Image source={item.icon} style={styles.drawerImage} />
       <Text style={styles.itemText}>{item.title}</Text>
     </TouchableOpacity>
