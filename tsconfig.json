@@ -1,6 +1,5 @@
 {
   "extends": "expo/tsconfig.base",
-  "esModuleInterop": true,
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -11,7 +10,9 @@
       "@screens/*": ["src/screens/*"],
       "@types/*": ["src/utils/types/*"],
       "@utils/*": ["src/utils/*"]
-    }
+    },
+    "esModuleInterop": true,
+    "jsx": "react-native"
   },
   "exclude": [
     "node_modules",
