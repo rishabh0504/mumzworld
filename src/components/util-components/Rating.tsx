@@ -1,6 +1,7 @@
 import Blank_Rating from "@assets/icons/rating_blank.png";
 import Filled_Rating from "@assets/icons/rating_fill.png";
 import { MAX_RATING } from "@utils/constant/constant";
+import { responsiveFontSize, responsiveHeight } from "@utils/style/responsive";
 import { Image, StyleSheet, View } from "react-native";
 interface RatingProps {
   rating: number;
@@ -32,5 +33,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
-  imageStyle: { width: 20, height: 20 },
+  imageStyle: { width: responsiveHeight(20), height: responsiveHeight(20) },
 });

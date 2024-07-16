@@ -5,6 +5,7 @@ import Chip from "@components/util-components/Chip";
 import Rating from "@components/util-components/Rating";
 import StrikethroughText from "@components/util-components/StrikethroughText";
 import Strong from "@components/util-components/Strong";
+import WebViewComponent from "@components/util-components/WebViewComponent";
 import { RouteProp } from "@react-navigation/native";
 import { Label, THEME_COLORS } from "@utils/constant/constant";
 import { responsiveFontSize, responsiveHeight } from "@utils/style/responsive";
@@ -54,6 +55,7 @@ export const ProductDetail = ({ route }: Props) => {
     price_range,
     review_count,
     features = "",
+    description,
   } = currentProductViewing || {};
   const image_gallery: string[] = media_gallery.map((image) => image.url);
   const featuresList = features.split("\n");
@@ -62,6 +64,7 @@ export const ProductDetail = ({ route }: Props) => {
   useEffect(() => {
     dispatch(fetchProductDetails());
   }, []);
+  console.log("Product description==========", description);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -142,6 +145,12 @@ export const ProductDetail = ({ route }: Props) => {
             <Strong style={styles.featureSubLabel}>Features</Strong>
             <View>{feature_template}</View>
           </View>
+          <View style={styles.featureInfo}>
+            <Strong style={styles.featureSubLabel}>Description</Strong>
+            <SafeAreaView style={styles.featureSubLabel}>
+              <WebViewComponent htmlContent={description.html} />
+            </SafeAreaView>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -195,14 +204,8 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(14),
     paddingLeft: 20,
     paddingRight: 20,
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  featureLabel: {
-    paddingLeft: 30,
-    paddingRight: 30,
-    backgroundColor: "green",
-    fontSize: 120,
+    marginTop: 4,
+    marginBottom: 4,
   },
   price: {
     fontSize: responsiveFontSize(16),
@@ -272,7 +275,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   bullet: {
-    fontSize: 20,
+    fontSize: responsiveFontSize(20),
     marginRight: 10,
   },
   text: {
@@ -282,6 +285,6 @@ const styles = StyleSheet.create({
   featureDetailWrapper: {
     paddingLeft: 20,
     paddingRight: 20,
-    backgroundColor: "#fff",
+    backgroundColor: THEME_COLORS["semantic.bg.white"],
   },
 });
