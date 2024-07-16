@@ -1,41 +1,35 @@
 import { DrawerNavigator } from "@components/drawer/DrawerNavigator";
-import useMascotAnimation from "@hooks/useMascotAnimation";
 import { NavigationContainer } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { Animated, Dimensions, Image, StyleSheet, View } from "react-native";
+import { Dimensions, Image, StyleSheet, View } from "react-native";
 import { Provider } from "react-redux";
 import store from "src/store";
 import Logo from "./src/assets/logo.png";
-import MascotImage from "./src/assets/mascot.png";
+import MascotGIF from "./src/assets/mascot.gif";
+
 const { width } = Dimensions.get("window");
 
 export default function App() {
-  const [animationCompleted, setAnimationCompleted] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const onAnimationComplete = () => {
-    setAnimationCompleted(true);
-  };
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
 
-  const translateYAnim = useMascotAnimation(onAnimationComplete);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <View style={styles.containerWrapper}>
-      {!animationCompleted && (
+      {loading && (
         <View style={styles.container}>
-          <Animated.Image
-            source={MascotImage}
-            style={[
-              styles.mascotImage,
-              {
-                transform: [{ translateY: translateYAnim }],
-              },
-            ]}
-          />
+          <Image source={MascotGIF} style={[styles.mascotImage]} />
           <Image source={Logo} style={[styles.image, { width: width * 0.8 }]} />
         </View>
       )}
-      {animationCompleted && (
+      {!loading && (
         <Provider store={store}>
           <NavigationContainer>
             <DrawerNavigator />

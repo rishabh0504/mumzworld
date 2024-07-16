@@ -8,9 +8,11 @@ import { RouteProp } from "@react-navigation/native";
 import { Label, THEME_COLORS } from "@utils/constant/constant";
 import { responsiveFontSize, responsiveHeight } from "@utils/style/responsive";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { useSelector } from "react-redux";
-import { RootState } from "src/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "src/store";
 import ProductImageSlider from "./ImageSlider";
+import { useEffect } from "react";
+import { fetchProductDetails } from "src/service/product.service";
 type ProductDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   "ProductDetail"
@@ -20,13 +22,22 @@ type Props = {
 };
 
 export const ProductDetail = ({ route }: Props) => {
+  const dispatch: AppDispatch = useDispatch();
+
   const { currentProductViewing, loading, error } = useSelector(
     (state: RootState) => state.items
   );
-  const { name, price_range, small_image } = currentProductViewing || {};
+  const { media_gallery = [], name, price_range } = currentProductViewing || {};
+  const image_gallery: string[] = media_gallery.map((image) => image.url);
+
+  // const { name, price_range, small_image, id } = currentProductViewing || {};
+
+  useEffect(() => {
+    dispatch(fetchProductDetails());
+  }, []);
   return (
     <View style={styles.container}>
-      <ProductImageSlider images={[small_image?.url]} />
+      <ProductImageSlider images={image_gallery} />
       <View style={styles.productDetailWrapper}>
         <View style={{ flex: 2 }}>
           <Strong style={styles.title} numberOfLines={4}>
@@ -62,16 +73,23 @@ export const ProductDetail = ({ route }: Props) => {
         </View>
       </View>
       <View style={styles.strikeWrapper}>
-        <StrikethroughText
-          style={{
-            paddingTop: 4,
-            fontSize: 16,
-            color: THEME_COLORS["semantic.fg.weak"],
-          }}
-        >
-          {price_range?.minimum_price?.regular_price?.value?.toFixed(2)}
-        </StrikethroughText>
-        <Text style={styles.taxText}>{Label.INCLUDING_TAX}</Text>
+        <>
+          {price_range?.minimum_price?.discount &&
+            price_range?.minimum_price?.discount.percent_off !== 0 && (
+              <>
+                <StrikethroughText
+                  style={{
+                    paddingTop: 4,
+                    fontSize: 16,
+                    color: THEME_COLORS["semantic.fg.weak"],
+                  }}
+                >
+                  {price_range?.minimum_price?.regular_price?.value?.toFixed(2)}
+                </StrikethroughText>
+                <Text style={styles.taxText}>{Label.INCLUDING_TAX}</Text>
+              </>
+            )}
+        </>
       </View>
     </View>
   );

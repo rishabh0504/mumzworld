@@ -1,6 +1,7 @@
 export const BASE_URL = 'https://storage.googleapis.com/';
 export const API_ENDPOINTS = {
-    GET_PRODUCTS: "mumzrn/product-list-large"
+    GET_PRODUCTS: "mumzrn/product-list-large",
+    GET_PRODUCT_DETAILS: "mumzrn/product"
 }
 
 export const CHIPSYALLA = {

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { BATCH_SIZE } from '@utils/constant/constant';
-import { Item } from '@utils/types/product';
+import { Item, ProductDetails } from '@utils/types/product';
 
 // Default state for filter pagenation
 const Default_With_Filter_Pagenation = {
@@ -27,7 +27,7 @@ interface ProductsState {
     items: Item[], // Total Product
     loading: boolean;
     error: string | null;
-    currentProductViewing: Item | null;
+    currentProductViewing: ProductDetails | null;
     itemsPerPage: number;
     withFilterPagenation: {
         totalPages: number;
@@ -89,7 +89,7 @@ export const productSlice = createSlice({
             state.error = action.payload;
             state.currentProductViewing = null;
         },
-        currentProductViewing: (state, action: PayloadAction<Item>) => {
+        currentProductViewing: (state, action: PayloadAction<ProductDetails>) => {
             state.loading = false;
             state.error = null;
             state.currentProductViewing = action.payload;
@@ -98,6 +98,9 @@ export const productSlice = createSlice({
             state.loading = false;
             state.error = null;
             state.currentProductViewing = null;
+        },
+        setCurrentProductViewing: (state, action: PayloadAction<ProductDetails>) => {
+            state.currentProductViewing = action.payload
         },
         loadMoreProducts: (state, action: PayloadAction<string | undefined>) => {
             const query = action.payload;
@@ -150,7 +153,8 @@ export const {
     loadMoreProducts,
     setLoading,
     aplyFilterWithQuery,
-    resetFilterQuery
+    resetFilterQuery,
+    setCurrentProductViewing
 } = productSlice.actions;
 
 export default productSlice.reducer;
