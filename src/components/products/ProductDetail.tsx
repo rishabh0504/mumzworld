@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductDetails } from "src/service/product.service";
 import { AppDispatch, RootState } from "src/store";
 import ProductImageSlider from "./ImageSlider";
+import Loader from "@components/util-components/Loader";
 
 const ITEM_HEIGHT = 12;
 const getFeatureDetails = (features: string[]) => {
@@ -55,7 +56,7 @@ export const ProductDetail = ({ route }: Props) => {
     price_range,
     review_count,
     features = "",
-    description,
+    description = {},
   } = currentProductViewing || {};
   const image_gallery: string[] = media_gallery.map((image) => image.url);
   const featuresList = features.split("\n");
@@ -64,94 +65,100 @@ export const ProductDetail = ({ route }: Props) => {
   useEffect(() => {
     dispatch(fetchProductDetails());
   }, []);
-  console.log("Product description==========", description);
+  const htmlTemplate = description?.html;
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <View style={styles.container}>
-          <ProductImageSlider images={image_gallery} />
-          <View style={styles.productDetailWrapper}>
-            <View style={{ flex: 2 }}>
-              <Strong style={styles.title} numberOfLines={4}>
-                {name}
-              </Strong>
+        {Array.isArray(image_gallery) && image_gallery.length > 0 ? (
+          <View style={styles.container}>
+            <ProductImageSlider images={image_gallery} />
+            <View style={styles.productDetailWrapper}>
+              <View style={{ flex: 2 }}>
+                <Strong style={styles.title} numberOfLines={4}>
+                  {name}
+                </Strong>
+              </View>
+              <View style={{ flex: 1 }}>
+                <Strong style={styles.exploreBrand} numberOfLines={2}>
+                  {Label.EXPLORE_BRAND}
+                </Strong>
+              </View>
             </View>
-            <View style={{ flex: 1 }}>
-              <Strong style={styles.exploreBrand} numberOfLines={2}>
-                {Label.EXPLORE_BRAND}
-              </Strong>
+            <View style={styles.reviewWrapper}>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <Rating rating={review_count} />
+                <Text style={styles.reviewText}>
+                  {Number(review_count ? review_count : 0).toFixed(1)} (
+                  {review_count ? review_count : 0} Reviews)
+                </Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.reviewWrapper}>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "row",
-                justifyContent: "flex-start",
-              }}
-            >
-              <Rating rating={review_count} />
-              <Text style={styles.reviewText}>
-                {Number(review_count ? review_count : 0).toFixed(1)} (
-                {review_count ? review_count : 0} Reviews)
-              </Text>
+            <View style={styles.priceDetail}>
+              <View style={styles.priceView}>
+                <Strong style={styles.price} numberOfLines={1}>
+                  {price_range?.minimum_price?.final_price?.currency}{" "}
+                  {price_range?.minimum_price?.final_price?.value?.toFixed(2)}
+                </Strong>
+                <Chip
+                  label={
+                    price_range?.minimum_price?.discount &&
+                    price_range?.minimum_price?.discount.percent_off !== 0
+                      ? `-${price_range?.minimum_price?.discount?.percent_off}%`
+                      : undefined
+                  }
+                  bgColor={THEME_COLORS["semantic.fg.accent"]}
+                  textColor={THEME_COLORS["semantic.bg.white"]}
+                />
+              </View>
+              <View style={styles.cartWrapper}>
+                <Image source={Like} style={styles.image} />
+                <Image source={Bag} style={styles.image} />
+              </View>
             </View>
-          </View>
-          <View style={styles.priceDetail}>
-            <View style={styles.priceView}>
-              <Strong style={styles.price} numberOfLines={1}>
-                {price_range?.minimum_price?.final_price?.currency}{" "}
-                {price_range?.minimum_price?.final_price?.value?.toFixed(2)}
-              </Strong>
-              <Chip
-                label={
-                  price_range?.minimum_price?.discount &&
-                  price_range?.minimum_price?.discount.percent_off !== 0
-                    ? `-${price_range?.minimum_price?.discount?.percent_off}%`
-                    : undefined
-                }
-                bgColor={THEME_COLORS["semantic.fg.accent"]}
-                textColor={THEME_COLORS["semantic.bg.white"]}
-              />
+            <View style={styles.strikeWrapper}>
+              <>
+                {price_range?.minimum_price?.discount &&
+                  price_range?.minimum_price?.discount.percent_off !== 0 && (
+                    <>
+                      <StrikethroughText
+                        style={{
+                          paddingTop: 4,
+                          fontSize: 16,
+                          color: THEME_COLORS["semantic.fg.weak"],
+                        }}
+                      >
+                        {price_range?.minimum_price?.regular_price?.value?.toFixed(
+                          2
+                        )}
+                      </StrikethroughText>
+                      <Text style={styles.taxText}>{Label.INCLUDING_TAX}</Text>
+                    </>
+                  )}
+              </>
             </View>
-            <View style={styles.cartWrapper}>
-              <Image source={Like} style={styles.image} />
-              <Image source={Bag} style={styles.image} />
+            <View style={styles.featureInfo}>
+              <Strong style={styles.featureTitle}>Product Details</Strong>
+              <Strong style={styles.featureSubLabel}>Features</Strong>
+              <View>{feature_template}</View>
             </View>
+            {htmlTemplate && (
+              <View style={styles.featureInfo}>
+                <Strong style={styles.featureSubLabel}>Description</Strong>
+                <SafeAreaView style={styles.featureSubLabel}>
+                  <WebViewComponent htmlContent={description.html} />
+                </SafeAreaView>
+              </View>
+            )}
           </View>
-          <View style={styles.strikeWrapper}>
-            <>
-              {price_range?.minimum_price?.discount &&
-                price_range?.minimum_price?.discount.percent_off !== 0 && (
-                  <>
-                    <StrikethroughText
-                      style={{
-                        paddingTop: 4,
-                        fontSize: 16,
-                        color: THEME_COLORS["semantic.fg.weak"],
-                      }}
-                    >
-                      {price_range?.minimum_price?.regular_price?.value?.toFixed(
-                        2
-                      )}
-                    </StrikethroughText>
-                    <Text style={styles.taxText}>{Label.INCLUDING_TAX}</Text>
-                  </>
-                )}
-            </>
-          </View>
-          <View style={styles.featureInfo}>
-            <Strong style={styles.featureTitle}>Product Details</Strong>
-            <Strong style={styles.featureSubLabel}>Features</Strong>
-            <View>{feature_template}</View>
-          </View>
-          <View style={styles.featureInfo}>
-            <Strong style={styles.featureSubLabel}>Description</Strong>
-            <SafeAreaView style={styles.featureSubLabel}>
-              <WebViewComponent htmlContent={description.html} />
-            </SafeAreaView>
-          </View>
-        </View>
+        ) : (
+          <Loader visible />
+        )}
       </ScrollView>
     </SafeAreaView>
   );
