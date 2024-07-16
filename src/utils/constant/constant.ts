@@ -28,3 +28,4 @@ export const Label = {
 }
 export const BATCH_SIZE = 20
 export const REACHED_THRESHOLD = 0.5
+export const MAX_RATING = 5;

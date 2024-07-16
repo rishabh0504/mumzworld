@@ -25,11 +25,6 @@ const ProductImageSlider = ({ images }) => {
     </View>
   );
 
-  const visibleIndices = [
-    currentIndex - 1,
-    currentIndex,
-    currentIndex + 1,
-  ].filter((index) => index >= 0 && index < images.length);
   return (
     <View style={styles.container}>
       <FlatList
@@ -46,9 +41,10 @@ const ProductImageSlider = ({ images }) => {
         scrollEventThrottle={200}
         snapToInterval={viewportWidth}
       />
+
       <View style={styles.pagination}>
         <View style={styles.paginationContainer}>
-          {visibleIndices.map((index) => (
+          {images.map((_, index) => (
             <View
               key={index}
               style={[
@@ -74,7 +70,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   paginationContainer: {
-    width: "40%",
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
@@ -83,7 +79,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   paginationDot: {
-    width: 20,
+    width: 6,
     height: 8,
     borderRadius: 4,
     backgroundColor: "#ccc",
@@ -98,7 +94,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: responsiveHeight(height / 3),
+    height: responsiveHeight(300),
   },
 });
 
